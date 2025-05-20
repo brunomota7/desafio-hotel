@@ -27,9 +27,11 @@ public class HotelService {
     @Autowired
     private QuartoRepository quartoRepository;
 
+    @Transactional
     public void createHotel(HotelRequestDTO dto) {
         Hotel hotel = Hotel.builder()
                 .nome(dto.getNome())
+                .cidade(dto.getCidade())
                 .endereco(dto.getEndereco())
                 .build();
 
@@ -63,15 +65,22 @@ public class HotelService {
                 .orElseThrow(() -> new QuartoNotFoundException("Quarto de número " + codgQuarto + " não encontrado"));
     }
 
-    public void mudarStatusReseva(String codgQuarto, boolean resevado) {
+    public void resevarQuarto(String codgQuarto, boolean resevado) {
         Quarto quarto = getQuartoOrThrow(codgQuarto);
         quarto.setResevado(resevado);
         quartoRepository.save(quarto);
     }
 
     public List<QuartoResponseDTO> listarQuartosDisponiveis() {
-        return quartoRepository.findByDisponivelTrue().stream()
+        return quartoRepository.findByResevadoFalse().stream()
                 .map(QuartoMapper::toDTO).toList();
+    }
+
+    public List<HotelResponseDTO> buscarPublicamente(String nome, String cidade) {
+        return hotelRepository.buscarPublicamente(nome, cidade)
+                .stream()
+                .map(HotelMapper::toDTO)
+                .toList();
     }
 
 }

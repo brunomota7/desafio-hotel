@@ -9,6 +9,7 @@ public class HotelMapper {
         var builder = HotelResponseDTO.builder()
                 .id(hotel.getId())
                 .nome(hotel.getNome())
+                .cidade(hotel.getCidade())
                 .endereco(hotel.getEndereco());
 
         return builder.build();

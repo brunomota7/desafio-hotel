@@ -20,6 +20,9 @@ public class Hotel {
     @Column(nullable = false, length = 200)
     private String nome;
 
+    @Column(nullable = false, length = 200)
+    private String cidade;
+
     @Column(nullable = false, length = 280)
     private String endereco;
 

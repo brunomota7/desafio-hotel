@@ -12,5 +12,6 @@ import lombok.NoArgsConstructor;
 public class HotelResponseDTO {
     private Long id;
     private String nome;
+    private String cidade;
     private String endereco;
 }
