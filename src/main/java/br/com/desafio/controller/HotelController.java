@@ -52,6 +52,13 @@ public class HotelController {
         return ResponseEntity.ok(hotelService.listarQuartosDisponiveis());
     }
 
+//    @GetMapping
+//    public ResponseEntity<List<QuartoResponseDTO>> buscarQuartoPorHotel(
+//            @RequestParam(required = true) String hotel
+//    ) {
+//        return ResponseEntity.ok(hotelService.listaQuartosPorHotel(hotel));
+//    }
+
     @GetMapping("/buscar")
     public ResponseEntity<List<HotelResponseDTO>> buscarPublicamente(
             @RequestParam(required = false) String nome,

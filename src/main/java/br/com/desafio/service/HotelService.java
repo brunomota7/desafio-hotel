@@ -76,6 +76,13 @@ public class HotelService {
                 .map(QuartoMapper::toDTO).toList();
     }
 
+//    public List<QuartoResponseDTO> listaQuartosPorHotel(String hotel) {
+//        return quartoRepository.findByHotel(hotel)
+//                .stream()
+//                .map(QuartoMapper::toDTO)
+//                .toList();
+//    }
+
     public List<HotelResponseDTO> buscarPublicamente(String nome, String cidade) {
         return hotelRepository.buscarPublicamente(nome, cidade)
                 .stream()
