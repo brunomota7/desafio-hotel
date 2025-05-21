@@ -28,12 +28,12 @@ public class QuartoController {
         return ResponseEntity.ok(quartoService.getAllQuarto());
     }
 
-    @GetMapping("/quartos/disponiveis")
+    @GetMapping("/disponiveis")
     public ResponseEntity<List<QuartoResponseDTO>> listarQuartosDisponiveis() {
         return ResponseEntity.ok(quartoService.listarQuartosDisponiveis());
     }
 
-    @GetMapping("/quartos/resevados")
+    @GetMapping("/resevados")
     public ResponseEntity<List<QuartoResponseDTO>> listaQuartosResevados() {
         return ResponseEntity.ok(quartoService.listaQuartosResevados());
     }

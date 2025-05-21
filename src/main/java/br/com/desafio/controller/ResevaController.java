@@ -1,20 +1,24 @@
 package br.com.desafio.controller;
 
 import br.com.desafio.dto.request.ResevarQuartoRequestDTO;
+import br.com.desafio.dto.response.ResevaResponseDTO;
 import br.com.desafio.service.ResevaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/resevar")
+@RequestMapping("/reseva")
 public class ResevaController {
 
     @Autowired
     private ResevaService resevaService;
 
     @PostMapping("/{codgQuarto}")
-    public ResponseEntity<?> resevarQuarto(@PathVariable String codgQuarto, @RequestBody ResevarQuartoRequestDTO dto) {
+    public ResponseEntity<?> resevarQuarto(@PathVariable String codgQuarto, @RequestBody @Valid ResevarQuartoRequestDTO dto) {
         return resevaService.resevarQuarto(codgQuarto, dto);
     }
 
@@ -22,6 +26,16 @@ public class ResevaController {
     public ResponseEntity<?> cancelarReseva(@PathVariable Long idReseva) {
         resevaService.cancelarReseva(idReseva);
         return ResponseEntity.ok("Reseva concelada!");
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ResevaResponseDTO>> getAllResevas() {
+        return ResponseEntity.ok(resevaService.getAllResevas());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResevaResponseDTO> getResevaById(@PathVariable Long id) {
+        return ResponseEntity.ok(resevaService.getResevaById(id));
     }
 
 }

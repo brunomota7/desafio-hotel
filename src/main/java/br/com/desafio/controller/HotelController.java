@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/hoteis")
 public class HotelController {
 
     @Autowired
@@ -22,7 +23,7 @@ public class HotelController {
         return ResponseEntity.ok("Hotel cadastrado com sucesso!");
     }
 
-    @GetMapping("/hoteis")
+    @GetMapping
     public ResponseEntity<List<HotelResponseDTO>> getAllHotel() {
         return ResponseEntity.ok(hotelService.getAllHotel());
     }
