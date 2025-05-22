@@ -38,6 +38,7 @@ public class QuartoService {
                 .numQuarto(dto.getNumQuarto())
                 .resevado(dto.isResevado())
                 .diaria(dto.getDiaria())
+                .capacidade(dto.getCapacidade())
                 .hotel(hotel)
                 .imagemUrl(dto.getImagemUrl())
                 .build();

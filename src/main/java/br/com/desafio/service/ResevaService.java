@@ -38,12 +38,17 @@ public class ResevaService {
                     .nomeCliente(dto.getNomeCliente())
                     .dataCheckIn(dto.getDataCheckIn())
                     .dataCheckOut(dto.getDataCheckOut())
+                    .quantPessoas(dto.getQuantPessoas())
                     .quarto(quarto)
                     .build();
 
-            resevaRepository.save(reseva);
-            quarto.setResevado(true);
-            return ResponseEntity.ok(ResevaMapper.toDTO(reseva));
+            if (reseva.getQuantPessoas() > quarto.getCapacidade())
+                return ResponseEntity.status(403).body("Número de pessoas superior a capacidade do quarto. Tente novamente.");
+            else {
+                resevaRepository.save(reseva);
+                quarto.setResevado(true);
+                return ResponseEntity.ok(ResevaMapper.toDTO(reseva));
+            }
         }
     }
 

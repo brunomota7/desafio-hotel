@@ -17,6 +17,7 @@ public class ResevaResponseDTO {
     private String nomeCliente;
     private LocalDate dataCheckIn;
     private LocalDate dataCheckOut;
+    private int quantPessoas;
     private QuartoInfoDTO quarto;
 
     @Data

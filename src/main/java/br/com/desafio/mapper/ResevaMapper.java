@@ -16,6 +16,7 @@ public class ResevaMapper {
                 .nomeCliente(reseva.getNomeCliente())
                 .dataCheckIn(reseva.getDataCheckIn())
                 .dataCheckOut(reseva.getDataCheckOut())
+                .quantPessoas(reseva.getQuantPessoas())
                 .quarto(ResevaResponseDTO.QuartoInfoDTO.builder()
                         .numQuarto(quarto.getNumQuarto())
                         .resevado(quarto.isResevado())

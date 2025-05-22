@@ -24,6 +24,9 @@ public class Quarto {
     @Column(nullable = false)
     private double diaria;
 
+    @Column(nullable = false)
+    private int capacidade;
+
     @ManyToOne
     @JoinColumn(name = "hotel_id", nullable = false)
     private Hotel hotel;

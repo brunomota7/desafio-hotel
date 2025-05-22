@@ -13,6 +13,7 @@ public class QuartoResponseDTO {
     private int numQuarto;
     private boolean resevado;
     private double diaria;
+    private int capacidade;
     private String imagemUrl;
     private HotelInfoDTO hotel;
 

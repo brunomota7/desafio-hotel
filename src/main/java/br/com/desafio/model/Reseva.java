@@ -29,6 +29,9 @@ public class Reseva {
     @Column(nullable = false)
     private LocalDate dataCheckOut;
 
+    @Column(nullable = false)
+    private int quantPessoas;
+
     @OneToOne
     @JoinColumn(name = "quarto_id", nullable = false)
     private Quarto quarto;

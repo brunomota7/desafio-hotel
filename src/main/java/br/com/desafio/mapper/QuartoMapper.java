@@ -10,6 +10,7 @@ public class QuartoMapper {
                 .numQuarto(quarto.getNumQuarto())
                 .resevado(quarto.isResevado())
                 .diaria(quarto.getDiaria())
+                .capacidade(quarto.getCapacidade())
                 .imagemUrl(quarto.getImagemUrl())
                 .hotel(QuartoResponseDTO.HotelInfoDTO.builder()
                         .id(quarto.getHotel().getId())

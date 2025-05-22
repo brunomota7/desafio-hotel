@@ -17,5 +17,6 @@ public class ResevarQuartoRequestDTO {
     private String nomeCliente;
     private LocalDate dataCheckIn;
     private LocalDate dataCheckOut;
+    private int quantPessoas;
     private Quarto quarto;
 }
