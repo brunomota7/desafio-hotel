@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuartoResponseDTO {
-    private String codgQuarto;
+    private int numQuarto;
     private boolean resevado;
     private double diaria;
     private String imagemUrl;

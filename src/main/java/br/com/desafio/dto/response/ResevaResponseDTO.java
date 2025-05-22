@@ -24,7 +24,7 @@ public class ResevaResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class QuartoInfoDTO {
-        private String codgQuarto;
+        private int numQuarto;
         private boolean resevado;
         private HotelInfoDTO hotel;
 

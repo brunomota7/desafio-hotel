@@ -7,7 +7,7 @@ public class QuartoMapper {
 
     public static QuartoResponseDTO toDTO(Quarto quarto) {
         var builder = QuartoResponseDTO.builder()
-                .codgQuarto(quarto.getCodgQuarto())
+                .numQuarto(quarto.getNumQuarto())
                 .resevado(quarto.isResevado())
                 .diaria(quarto.getDiaria())
                 .imagemUrl(quarto.getImagemUrl())

@@ -17,7 +17,7 @@ public class ResevaMapper {
                 .dataCheckIn(reseva.getDataCheckIn())
                 .dataCheckOut(reseva.getDataCheckOut())
                 .quarto(ResevaResponseDTO.QuartoInfoDTO.builder()
-                        .codgQuarto(quarto.getCodgQuarto())
+                        .numQuarto(quarto.getNumQuarto())
                         .resevado(quarto.isResevado())
                         .hotel(ResevaResponseDTO.HotelInfoDTO.builder()
                                 .nome(hotel.getNome())

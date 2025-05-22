@@ -17,9 +17,9 @@ public class ResevaController {
     @Autowired
     private ResevaService resevaService;
 
-    @PostMapping("/{codgQuarto}")
-    public ResponseEntity<?> resevarQuarto(@PathVariable String codgQuarto, @RequestBody @Valid ResevarQuartoRequestDTO dto) {
-        return resevaService.resevarQuarto(codgQuarto, dto);
+    @PostMapping("/{numQuarto}")
+    public ResponseEntity<?> resevarQuarto(@PathVariable int numQuarto, @RequestBody @Valid ResevarQuartoRequestDTO dto) {
+        return resevaService.resevarQuarto(numQuarto, dto);
     }
 
     @PostMapping("/cancelar/{idReseva}")

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface QuartoRepository extends JpaRepository<Quarto, String> {
+public interface QuartoRepository extends JpaRepository<Quarto, Integer> {
     List<Quarto> findByResevadoFalse();
     List<Quarto> findByResevadoTrue();
     @Query("SELECT q FROM Quarto q WHERE LOWER(q.hotel.nome) LIKE LOWER(CONCAT('%', :nome, '%'))")

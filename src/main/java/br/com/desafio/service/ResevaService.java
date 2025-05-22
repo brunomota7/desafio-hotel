@@ -27,12 +27,12 @@ public class ResevaService {
     private ResevaRepository resevaRepository;
 
     @Transactional
-    public ResponseEntity<?> resevarQuarto(String codgQuarto, ResevarQuartoRequestDTO dto) {
-        Quarto quarto = quartoRepository.findById(codgQuarto)
-                .orElseThrow(() -> new QuartoNotFoundException("Quarto de número " + codgQuarto + " não encontrado"));
+    public ResponseEntity<?> resevarQuarto(int numQuarto, ResevarQuartoRequestDTO dto) {
+        Quarto quarto = quartoRepository.findById(numQuarto)
+                .orElseThrow(() -> new QuartoNotFoundException("Quarto de número " + numQuarto + " não encontrado"));
 
         if (quarto.isResevado()) {
-            return ResponseEntity.status(403).body("O querto de número " + codgQuarto + " já foi resevado.");
+            return ResponseEntity.status(403).body("O querto de número " + numQuarto + " já foi resevado.");
         } else {
             Reseva reseva = Reseva.builder()
                     .nomeCliente(dto.getNomeCliente())

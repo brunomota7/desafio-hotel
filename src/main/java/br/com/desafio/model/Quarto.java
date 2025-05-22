@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 public class Quarto {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String codgQuarto;
+    @Column(nullable = false)
+    private int numQuarto;
 
     @Column(nullable = false)
     private boolean resevado;
