@@ -49,6 +49,13 @@ public class QuartoService {
                 .map(QuartoMapper::toDTO).toList();
     }
 
+    public List<QuartoResponseDTO> listarQuartosPorHotel(String nome) {
+        return quartoRepository.findByHotel(nome)
+                .stream()
+                .map(QuartoMapper::toDTO)
+                .toList();
+    }
+
     public List<QuartoResponseDTO> listarQuartosDisponiveis() {
         return quartoRepository.findByResevadoFalse().stream()
                 .map(QuartoMapper::toDTO).toList();

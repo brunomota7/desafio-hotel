@@ -28,6 +28,11 @@ public class QuartoController {
         return ResponseEntity.ok(quartoService.getAllQuarto());
     }
 
+    @GetMapping("/buscar")
+    public ResponseEntity<List<QuartoResponseDTO>> buscarPeloNomeHotel(@RequestParam String nome) {
+        return ResponseEntity.ok(quartoService.listarQuartosPorHotel(nome));
+    }
+
     @GetMapping("/disponiveis")
     public ResponseEntity<List<QuartoResponseDTO>> listarQuartosDisponiveis() {
         return ResponseEntity.ok(quartoService.listarQuartosDisponiveis());
