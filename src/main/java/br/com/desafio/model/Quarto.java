@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Quarto {
 
     @Id
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numQuarto;
 
     @Column(nullable = false)

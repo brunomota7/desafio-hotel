@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuartoRequestDTO {
-    private int numQuarto;
     private boolean resevado = false;
     private double diaria;
     private int capacidade;

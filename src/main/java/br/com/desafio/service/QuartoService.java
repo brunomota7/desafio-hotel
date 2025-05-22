@@ -35,7 +35,6 @@ public class QuartoService {
                 .orElseThrow(() ->new HotelNotFoundException("Hotel de ID " + id + " não encontrado"));
 
         Quarto quarto = Quarto.builder()
-                .numQuarto(dto.getNumQuarto())
                 .resevado(dto.isResevado())
                 .diaria(dto.getDiaria())
                 .capacidade(dto.getCapacidade())
