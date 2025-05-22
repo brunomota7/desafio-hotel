@@ -26,4 +26,6 @@ public class Hotel {
     @Column(nullable = false, length = 280)
     private String endereco;
 
+    private String imagemUrl;
+
 }

@@ -14,4 +14,5 @@ public class HotelResponseDTO {
     private String nome;
     private String cidade;
     private String endereco;
+    private String imagemUrl;
 }

@@ -34,14 +34,17 @@ public class HotelService {
                 .nome(dto.getNome())
                 .cidade(dto.getCidade())
                 .endereco(dto.getEndereco())
+                .imagemUrl(dto.getImagemUrl())
                 .build();
 
         hotelRepository.save(hotel);
     }
 
     public List<HotelResponseDTO> getAllHotel() {
-        return hotelRepository.findAll().stream()
-                .map(HotelMapper::toDTO).toList();
+        return hotelRepository.findAll()
+                .stream()
+                .map(HotelMapper::toDTO)
+                .toList();
     }
 
     public List<HotelResponseDTO> buscarPublicamente(String nome, String cidade) {

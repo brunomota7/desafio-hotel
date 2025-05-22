@@ -10,7 +10,8 @@ public class HotelMapper {
                 .id(hotel.getId())
                 .nome(hotel.getNome())
                 .cidade(hotel.getCidade())
-                .endereco(hotel.getEndereco());
+                .endereco(hotel.getEndereco())
+                .imagemUrl(hotel.getImagemUrl());
 
         return builder.build();
     }
