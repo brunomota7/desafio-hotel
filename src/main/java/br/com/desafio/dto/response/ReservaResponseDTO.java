@@ -1,6 +1,5 @@
 package br.com.desafio.dto.response;
 
-import br.com.desafio.model.Quarto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +11,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResevaResponseDTO {
+public class ReservaResponseDTO {
     private Long id;
     private String nomeCliente;
     private LocalDate dataCheckIn;

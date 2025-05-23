@@ -16,6 +16,9 @@ public class Quarto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(nullable = false)
     private int numQuarto;
 
     @Column(nullable = false)

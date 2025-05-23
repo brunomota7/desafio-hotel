@@ -1,21 +1,15 @@
 package br.com.desafio.service;
 
 import br.com.desafio.dto.request.QuartoRequestDTO;
-import br.com.desafio.dto.request.ResevarQuartoRequestDTO;
 import br.com.desafio.dto.response.QuartoResponseDTO;
 import br.com.desafio.exceptions.HotelNotFoundException;
-import br.com.desafio.exceptions.QuartoNotFoundException;
-import br.com.desafio.exceptions.ResevaNotFoundException;
 import br.com.desafio.mapper.QuartoMapper;
 import br.com.desafio.model.Hotel;
 import br.com.desafio.model.Quarto;
-import br.com.desafio.model.Reseva;
 import br.com.desafio.repository.HotelRepository;
 import br.com.desafio.repository.QuartoRepository;
-import br.com.desafio.repository.ResevaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +29,7 @@ public class QuartoService {
                 .orElseThrow(() ->new HotelNotFoundException("Hotel de ID " + id + " não encontrado"));
 
         Quarto quarto = Quarto.builder()
+                .numQuarto(dto.getNumQuarto())
                 .resevado(dto.isResevado())
                 .diaria(dto.getDiaria())
                 .capacidade(dto.getCapacidade())
@@ -46,8 +41,10 @@ public class QuartoService {
     }
 
     public List<QuartoResponseDTO> getAllQuarto() {
-        return quartoRepository.findAll().stream()
-                .map(QuartoMapper::toDTO).toList();
+        return quartoRepository.findAll()
+                .stream()
+                .map(QuartoMapper::toDTO)
+                .toList();
     }
 
     public List<QuartoResponseDTO> listarQuartosPorHotel(String nome) {
@@ -58,12 +55,15 @@ public class QuartoService {
     }
 
     public List<QuartoResponseDTO> listarQuartosDisponiveis() {
-        return quartoRepository.findByResevadoFalse().stream()
-                .map(QuartoMapper::toDTO).toList();
+        return quartoRepository.findByResevadoFalse()
+                .stream()
+                .map(QuartoMapper::toDTO)
+                .toList();
     }
 
     public List<QuartoResponseDTO> listaQuartosResevados() {
-        return quartoRepository.findByResevadoTrue().stream()
+        return quartoRepository.findByResevadoTrue()
+                .stream()
                 .map(QuartoMapper::toDTO)
                 .toList();
     }

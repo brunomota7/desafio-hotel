@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class QuartoRequestDTO {
     private boolean resevado = false;
+    private int numQuarto;
     private double diaria;
     private int capacidade;
     private Hotel hotel;
