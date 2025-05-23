@@ -36,4 +36,16 @@ public class HotelController {
         return ResponseEntity.ok(hotelService.buscarPublicamente(nome, cidade));
     }
 
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<HotelResponseDTO> atualizarInfosHote(
+            @PathVariable Long id, @RequestBody @Valid HotelRequestDTO dto) {
+        return hotelService.updateHotelInfos(id, dto);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deletHotel(@PathVariable Long id) {
+        hotelService.deleteHotel(id);
+        return ResponseEntity.ok("Hotel de ID " + id + " excluído com sucesso!");
+    }
+
 }

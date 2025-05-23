@@ -54,4 +54,25 @@ public class HotelService {
                 .toList();
     }
 
+    public ResponseEntity<HotelResponseDTO> updateHotelInfos(Long id, HotelRequestDTO dto) {
+        Hotel hotel = hotelRepository.findById(id)
+                .orElseThrow(() -> new HotelNotFoundException("Hotel de ID " + id + " não encontrado. Tente novamente!"));
+
+        hotel.setNome(dto.getNome());
+        hotel.setCidade(dto.getCidade());
+        hotel.setEndereco(dto.getEndereco());
+        hotel.setImagemUrl(dto.getImagemUrl());
+
+        hotelRepository.save(hotel);
+
+        return ResponseEntity.ok(HotelMapper.toDTO(hotel));
+    }
+
+    public void deleteHotel(Long id) {
+        Hotel hotel = hotelRepository.findById(id)
+                .orElseThrow(() -> new HotelNotFoundException("Hotel de ID " + id + " não encontrado. Tente novamente!"));
+
+        hotelRepository.delete(hotel);
+    }
+
 }
