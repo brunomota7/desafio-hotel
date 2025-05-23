@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class ReservaResponseDTO {
     private Long id;
     private String nomeCliente;
+    private String contato;
     private LocalDate dataCheckIn;
     private LocalDate dataCheckOut;
     private int quantPessoas;

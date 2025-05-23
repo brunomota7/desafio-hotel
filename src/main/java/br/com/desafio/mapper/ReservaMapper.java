@@ -14,6 +14,7 @@ public class ReservaMapper {
         return ReservaResponseDTO.builder()
                 .id(reserva.getId())
                 .nomeCliente(reserva.getNomeCliente())
+                .contato(reserva.getContato())
                 .dataCheckIn(reserva.getDataCheckIn())
                 .dataCheckOut(reserva.getDataCheckOut())
                 .quantPessoas(reserva.getQuantPessoas())

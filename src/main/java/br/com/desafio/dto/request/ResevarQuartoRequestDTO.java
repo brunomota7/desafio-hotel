@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ResevarQuartoRequestDTO {
     private String nomeCliente;
+    private String contato;
     private LocalDate dataCheckIn;
     private LocalDate dataCheckOut;
     private int quantPessoas;

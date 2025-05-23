@@ -23,6 +23,9 @@ public class Reserva {
     @Column(nullable = false, length = 200)
     private String nomeCliente;
 
+    @Column(nullable = false, length = 20)
+    private String contato;
+
     @Column(nullable = false)
     private LocalDate dataCheckIn;
 

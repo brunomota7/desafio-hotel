@@ -33,6 +33,7 @@ public class ReservaService {
         } else {
             Reserva reserva = Reserva.builder()
                     .nomeCliente(dto.getNomeCliente())
+                    .contato(dto.getContato())
                     .dataCheckIn(dto.getDataCheckIn())
                     .dataCheckOut(dto.getDataCheckOut())
                     .quantPessoas(dto.getQuantPessoas())
