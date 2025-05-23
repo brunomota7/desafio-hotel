@@ -54,7 +54,7 @@ public class HotelService {
                 .toList();
     }
 
-    public ResponseEntity<HotelResponseDTO> updateHotelInfos(Long id, HotelRequestDTO dto) {
+    public ResponseEntity<?> updateHotelInfos(Long id, HotelRequestDTO dto) {
         Hotel hotel = hotelRepository.findById(id)
                 .orElseThrow(() -> new HotelNotFoundException("Hotel de ID " + id + " não encontrado. Tente novamente!"));
 
@@ -65,7 +65,7 @@ public class HotelService {
 
         hotelRepository.save(hotel);
 
-        return ResponseEntity.ok(HotelMapper.toDTO(hotel));
+        return ResponseEntity.ok("Informações atualizadas com sucesso!");
     }
 
     public void deleteHotel(Long id) {
