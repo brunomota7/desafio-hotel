@@ -37,7 +37,7 @@ public class HotelController {
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<HotelResponseDTO> atualizarInfosHote(
+    public ResponseEntity<?> atualizarInfosHote(
             @PathVariable Long id, @RequestBody @Valid HotelRequestDTO dto) {
         return hotelService.updateHotelInfos(id, dto);
     }

@@ -43,4 +43,15 @@ public class QuartoController {
         return ResponseEntity.ok(quartoService.listaQuartosResevados());
     }
 
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<?> atualizaInfosQuarto(@PathVariable Integer id, @RequestBody @Valid QuartoRequestDTO dto) {
+        return quartoService.updateQuartoInfo(id, dto);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteQuarto(@PathVariable Integer id) {
+        quartoService.deleteQuarto(id);
+        return ResponseEntity.ok("Quarto excluído com sucesso!");
+    }
+
 }

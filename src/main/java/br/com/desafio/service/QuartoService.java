@@ -3,6 +3,7 @@ package br.com.desafio.service;
 import br.com.desafio.dto.request.QuartoRequestDTO;
 import br.com.desafio.dto.response.QuartoResponseDTO;
 import br.com.desafio.exceptions.HotelNotFoundException;
+import br.com.desafio.exceptions.QuartoNotFoundException;
 import br.com.desafio.mapper.QuartoMapper;
 import br.com.desafio.model.Hotel;
 import br.com.desafio.model.Quarto;
@@ -10,6 +11,7 @@ import br.com.desafio.repository.HotelRepository;
 import br.com.desafio.repository.QuartoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,6 +68,26 @@ public class QuartoService {
                 .stream()
                 .map(QuartoMapper::toDTO)
                 .toList();
+    }
+
+    public ResponseEntity<?> updateQuartoInfo(Integer id, QuartoRequestDTO dto) {
+        Quarto quarto = quartoRepository.findById(id)
+                .orElseThrow(() -> new QuartoNotFoundException("Quarto de ID " + id + " não encontrado, tente novamente!"));
+
+        quarto.setNumQuarto(dto.getNumQuarto());
+        quarto.setCapacidade(dto.getCapacidade());
+        quarto.setDiaria(dto.getDiaria());
+        quarto.setImagemUrl(dto.getImagemUrl());
+
+        quartoRepository.save(quarto);
+        return ResponseEntity.ok("Informações do quarto atualizadas com sucesso!");
+    }
+
+    public void deleteQuarto(Integer id) {
+        Quarto quarto = quartoRepository.findById(id)
+                .orElseThrow(() -> new QuartoNotFoundException("Quarto de ID " + id + " não encontrado, tente novamente!"));
+
+        quartoRepository.delete(quarto);
     }
 
 }
