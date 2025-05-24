@@ -17,7 +17,7 @@ public class ReservaResponseDTO {
     private String contato;
     private LocalDate dataCheckIn;
     private LocalDate dataCheckOut;
-    private int quantPessoas;
+    private Integer quantPessoas;
     private QuartoInfoDTO quarto;
 
     @Data

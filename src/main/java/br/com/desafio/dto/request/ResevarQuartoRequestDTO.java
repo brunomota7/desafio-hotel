@@ -31,7 +31,7 @@ public class ResevarQuartoRequestDTO {
     private LocalDate dataCheckOut;
 
     @NotBlank(message = "A quantidade de pessoas por quarto é obrigatória")
-    @Pattern(regexp = "\\d+", message = "A quantidade de pessoas por quarto deve conter apenas dígitos")
+    @Pattern(regexp = "^[1-9]\\\\d*$", message = "A quantidade de pessoas deve ser um número positivo maior que zero")
     private String quantPessoas;
 
     private Quarto quarto;
