@@ -20,12 +20,14 @@ public class HotelController {
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrarHotel(@RequestBody @Valid HotelRequestDTO dto) {
         hotelService.createHotel(dto);
-        return ResponseEntity.ok("Hotel cadastrado com sucesso!");
+        return ResponseEntity.status(201)
+                .body("Hotel cadastrado com sucesso!");
     }
 
     @GetMapping
     public ResponseEntity<List<HotelResponseDTO>> getAllHotel() {
-        return ResponseEntity.ok(hotelService.getAllHotel());
+        return ResponseEntity.status(200)
+                .body(hotelService.getAllHotel());
     }
 
     @GetMapping("/buscar")
@@ -33,19 +35,23 @@ public class HotelController {
             @RequestParam(required = false) String nome,
             @RequestParam(required = false) String cidade
     ) {
-        return ResponseEntity.ok(hotelService.buscarPublicamente(nome, cidade));
+        return ResponseEntity.status(200)
+                .body(hotelService.buscarPublicamente(nome, cidade));
     }
 
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<?> atualizarInfosHote(
             @PathVariable Long id, @RequestBody @Valid HotelRequestDTO dto) {
-        return hotelService.updateHotelInfos(id, dto);
+        hotelService.updateHotelInfos(id, dto);
+        return ResponseEntity
+                .ok("Informações do hotel atualizadas com sucesso!");
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deletHotel(@PathVariable Long id) {
         hotelService.deleteHotel(id);
-        return ResponseEntity.ok("Hotel de ID " + id + " excluído com sucesso!");
+        return ResponseEntity.status(200)
+                .body("Hotel de ID " + id + " excluído com sucesso!");
     }
 
 }

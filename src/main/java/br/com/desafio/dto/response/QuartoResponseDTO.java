@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuartoResponseDTO {
+    private Long id;
     private int numQuarto;
     private boolean resevado;
     private double diaria;

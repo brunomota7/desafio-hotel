@@ -25,29 +25,29 @@ public class ReservaService {
     private ResevaRepository reservaRepository;
 
     @Transactional
-    public ResponseEntity<?> resevarQuarto(int numQuarto, ResevarQuartoRequestDTO dto) {
+    public ResponseEntity<String> resevarQuarto(Integer numQuarto, ResevarQuartoRequestDTO dto) {
         Quarto quarto = quartoRepository.findByNumQuarto(numQuarto);
 
-        if (quarto.isResevado()) {
-            return ResponseEntity.status(403).body("O querto de número " + numQuarto + " já foi resevado.");
-        } else {
-            Reserva reserva = Reserva.builder()
-                    .nomeCliente(dto.getNomeCliente())
-                    .contato(dto.getContato())
-                    .dataCheckIn(dto.getDataCheckIn())
-                    .dataCheckOut(dto.getDataCheckOut())
-                    .quantPessoas(dto.getQuantPessoas())
-                    .quarto(quarto)
-                    .build();
+        if (quarto.isResevado()) return ResponseEntity.status(422)
+                .body("O querto de número " + numQuarto + " já foi resevado.");
 
-            if (reserva.getQuantPessoas() > quarto.getCapacidade())
-                return ResponseEntity.status(403).body("Número de pessoas superior a capacidade do quarto. Tente novamente.");
-            else {
-                reservaRepository.save(reserva);
-                quarto.setResevado(true);
-                return ResponseEntity.ok(ReservaMapper.toDTO(reserva));
-            }
-        }
+        if (dto.getQuantPessoasAsInteger() > quarto.getCapacidade()) return ResponseEntity.status(409)
+                .body("Número de pessoas superior a capacidade do quarto. Tente novamente.");
+
+        Reserva reserva = Reserva.builder()
+                .nomeCliente(dto.getNomeCliente())
+                .contato(dto.getContato())
+                .dataCheckIn(dto.getDataCheckIn())
+                .dataCheckOut(dto.getDataCheckOut())
+                .quantPessoas(dto.getQuantPessoasAsInteger())
+                .quarto(quarto)
+                .build();
+
+        reservaRepository.save(reserva);
+        quarto.setResevado(true);
+
+        return ResponseEntity.status(201)
+                .body("Reseva realizada com sucesso!");
     }
 
     @Transactional

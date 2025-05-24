@@ -20,38 +20,46 @@ public class QuartoController {
     @PostMapping("/add/{id}")
     public ResponseEntity<?> cadastrarQuarto(@PathVariable Long id, @RequestBody @Valid QuartoRequestDTO dto) {
         quartoService.addQuarto(id, dto);
-        return ResponseEntity.ok("Quarto adicionado com sucesso!");
+        return ResponseEntity.status(201)
+                .body("Quarto adicionado com sucesso!");
     }
 
     @GetMapping
     public ResponseEntity<List<QuartoResponseDTO>> getAllQuartos() {
-        return ResponseEntity.ok(quartoService.getAllQuarto());
+        return ResponseEntity.status(200)
+                .body(quartoService.getAllQuarto());
     }
 
     @GetMapping("/buscar")
     public ResponseEntity<List<QuartoResponseDTO>> buscarPeloNomeHotel(@RequestParam String nome) {
-        return ResponseEntity.ok(quartoService.listarQuartosPorHotel(nome));
+        return ResponseEntity.status(200)
+                .body(quartoService.listarQuartosPorHotel(nome));
     }
 
     @GetMapping("/disponiveis")
     public ResponseEntity<List<QuartoResponseDTO>> listarQuartosDisponiveis() {
-        return ResponseEntity.ok(quartoService.listarQuartosDisponiveis());
+        return ResponseEntity.status(200)
+                .body(quartoService.listarQuartosDisponiveis());
     }
 
     @GetMapping("/resevados")
-    public ResponseEntity<List<QuartoResponseDTO>> listaQuartosResevados() {
-        return ResponseEntity.ok(quartoService.listaQuartosResevados());
+    public ResponseEntity<List<QuartoResponseDTO>> listaQuartosReservados() {
+        return ResponseEntity.status(200)
+                .body(quartoService.listaQuartosResevados());
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<?> atualizaInfosQuarto(@PathVariable Integer id, @RequestBody @Valid QuartoRequestDTO dto) {
-        return quartoService.updateQuartoInfo(id, dto);
+    public ResponseEntity<?> atualizaInfosQuarto(@PathVariable Long id, @RequestBody @Valid QuartoRequestDTO dto) {
+        quartoService.updateQuartoInfo(id, dto);
+        return ResponseEntity
+                .ok("Informações do quarto " + dto.getNumQuarto() + " atualizadas com sucesso!");
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteQuarto(@PathVariable Integer id) {
+    public ResponseEntity<?> deleteQuarto(@PathVariable Long id) {
         quartoService.deleteQuarto(id);
-        return ResponseEntity.ok("Quarto excluído com sucesso!");
+        return ResponseEntity.status(200)
+                .body("Quarto removido com sucesso!");
     }
 
 }

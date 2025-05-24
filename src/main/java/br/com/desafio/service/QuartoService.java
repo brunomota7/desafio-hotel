@@ -31,7 +31,7 @@ public class QuartoService {
                 .orElseThrow(() ->new HotelNotFoundException("Hotel de ID " + id + " não encontrado"));
 
         Quarto quarto = Quarto.builder()
-                .numQuarto(dto.getNumQuarto())
+                .numQuarto(dto.getNumQuartoAsInteger())
                 .resevado(dto.isResevado())
                 .diaria(dto.getDiaria())
                 .capacidade(dto.getCapacidade())
@@ -70,20 +70,19 @@ public class QuartoService {
                 .toList();
     }
 
-    public ResponseEntity<?> updateQuartoInfo(Integer id, QuartoRequestDTO dto) {
+    public void updateQuartoInfo(Long id, QuartoRequestDTO dto) {
         Quarto quarto = quartoRepository.findById(id)
                 .orElseThrow(() -> new QuartoNotFoundException("Quarto de ID " + id + " não encontrado, tente novamente!"));
 
-        quarto.setNumQuarto(dto.getNumQuarto());
+        quarto.setNumQuarto(dto.getNumQuartoAsInteger());
         quarto.setCapacidade(dto.getCapacidade());
         quarto.setDiaria(dto.getDiaria());
         quarto.setImagemUrl(dto.getImagemUrl());
 
         quartoRepository.save(quarto);
-        return ResponseEntity.ok("Informações do quarto atualizadas com sucesso!");
     }
 
-    public void deleteQuarto(Integer id) {
+    public void deleteQuarto(Long id) {
         Quarto quarto = quartoRepository.findById(id)
                 .orElseThrow(() -> new QuartoNotFoundException("Quarto de ID " + id + " não encontrado, tente novamente!"));
 

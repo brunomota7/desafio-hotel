@@ -7,6 +7,7 @@ public class QuartoMapper {
 
     public static QuartoResponseDTO toDTO(Quarto quarto) {
         var builder = QuartoResponseDTO.builder()
+                .id(quarto.getId())
                 .numQuarto(quarto.getNumQuarto())
                 .resevado(quarto.isResevado())
                 .diaria(quarto.getDiaria())

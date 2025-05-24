@@ -33,7 +33,7 @@ public class Reserva {
     private LocalDate dataCheckOut;
 
     @Column(nullable = false)
-    private int quantPessoas;
+    private Integer quantPessoas;
 
     @OneToOne
     @JoinColumn(name = "quarto_id", nullable = false)

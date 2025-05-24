@@ -16,10 +16,10 @@ public class Quarto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(nullable = false)
-    private int numQuarto;
+    private Integer numQuarto;
 
     @Column(nullable = false)
     private boolean resevado;
@@ -28,7 +28,7 @@ public class Quarto {
     private double diaria;
 
     @Column(nullable = false)
-    private int capacidade;
+    private Integer capacidade;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id", nullable = false)
