@@ -31,7 +31,7 @@ public class QuartoService {
                 .orElseThrow(() ->new HotelNotFoundException("Hotel de ID " + id + " não encontrado"));
 
         Quarto quarto = Quarto.builder()
-                .numQuarto(dto.getNumQuartoAsInteger())
+                .numQuarto(dto.getNumQuarto())
                 .resevado(dto.isResevado())
                 .diaria(dto.getDiaria())
                 .capacidade(dto.getCapacidade())
@@ -74,7 +74,7 @@ public class QuartoService {
         Quarto quarto = quartoRepository.findById(id)
                 .orElseThrow(() -> new QuartoNotFoundException("Quarto de ID " + id + " não encontrado, tente novamente!"));
 
-        quarto.setNumQuarto(dto.getNumQuartoAsInteger());
+        quarto.setNumQuarto(dto.getNumQuarto());
         quarto.setCapacidade(dto.getCapacidade());
         quarto.setDiaria(dto.getDiaria());
         quarto.setImagemUrl(dto.getImagemUrl());
