@@ -19,16 +19,15 @@ public class ReservaController {
     @Autowired
     private ReservaService reservaService;
 
-    @PostMapping("/{numQuarto}")
-    public ResponseEntity<?> resevarQuarto(@PathVariable Integer numQuarto, @RequestBody @Valid ResevarQuartoRequestDTO dto) {
-        return reservaService.resevarQuarto(numQuarto, dto);
+    @PostMapping("/{id}")
+    public ResponseEntity<?> resevarQuarto(@PathVariable Long id, @RequestBody @Valid ResevarQuartoRequestDTO dto) {
+        return reservaService.reservarQuarto(id, dto);
     }
 
     @PostMapping("/cancelar/{idReserva}")
     public ResponseEntity<?> cancelarReserva(@PathVariable Long idReserva) {
         reservaService.cancelarReserva(idReserva);
-        return ResponseEntity
-                .ok("Reseva cancelada com sucesso!");
+        return ResponseEntity.status(204).build();
     }
 
     @GetMapping

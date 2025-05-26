@@ -42,7 +42,7 @@ public class QuartoController {
                 .body(quartoService.listarQuartosDisponiveis());
     }
 
-    @GetMapping("/resevados")
+    @GetMapping("/reservados")
     public ResponseEntity<List<QuartoResponseDTO>> listaQuartosReservados() {
         return ResponseEntity.status(200)
                 .body(quartoService.listaQuartosResevados());

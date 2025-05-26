@@ -2,6 +2,7 @@ package br.com.desafio.service;
 
 import br.com.desafio.dto.request.ResevarQuartoRequestDTO;
 import br.com.desafio.dto.response.ReservaResponseDTO;
+import br.com.desafio.exceptions.QuartoNotFoundException;
 import br.com.desafio.exceptions.ReservaNotFoundException;
 import br.com.desafio.mapper.ReservaMapper;
 import br.com.desafio.model.Quarto;
@@ -25,13 +26,14 @@ public class ReservaService {
     private ResevaRepository reservaRepository;
 
     @Transactional
-    public ResponseEntity<String> resevarQuarto(Integer numQuarto, ResevarQuartoRequestDTO dto) {
-        Quarto quarto = quartoRepository.findByNumQuarto(numQuarto);
+    public ResponseEntity<String> reservarQuarto(Long id, ResevarQuartoRequestDTO dto) {
+        Quarto quarto = quartoRepository.findById(id)
+                .orElseThrow(() -> new QuartoNotFoundException("Quarto não encontrado"));
 
         if (quarto.isResevado()) return ResponseEntity.status(422)
-                .body("O querto de número " + numQuarto + " já foi resevado.");
+                .body("O quarto de número \" + numQuarto + \" já foi reservado.");
 
-        if (dto.getQuantPessoasAsInteger() > quarto.getCapacidade()) return ResponseEntity.status(409)
+        if (dto.getQuantPessoas() > quarto.getCapacidade()) return ResponseEntity.status(409)
                 .body("Número de pessoas superior a capacidade do quarto. Tente novamente.");
 
         Reserva reserva = Reserva.builder()
@@ -39,7 +41,7 @@ public class ReservaService {
                 .contato(dto.getContato())
                 .dataCheckIn(dto.getDataCheckIn())
                 .dataCheckOut(dto.getDataCheckOut())
-                .quantPessoas(dto.getQuantPessoasAsInteger())
+                .quantPessoas(dto.getQuantPessoas())
                 .quarto(quarto)
                 .build();
 

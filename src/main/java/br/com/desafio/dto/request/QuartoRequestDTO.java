@@ -1,10 +1,7 @@
 package br.com.desafio.dto.request;
 
 import br.com.desafio.model.Hotel;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +17,11 @@ public class QuartoRequestDTO {
     @Pattern(regexp = "\\d+", message = "O número do quarto deve conter apenas dígitos")
     private String numQuarto;
 
-    @NotBlank(message = "O valor da diária do quarto é obrigatória")
+    @NotNull
     @Positive(message = "O valor da diária tem que ser positivo")
     private double diaria;
 
-    @NotBlank(message = "A capacidade do quarto é obrigatória.")
+    @NotNull
     @Min(value = 1, message = "A capacidade não pode ser negativa")
     private int capacidade;
 
