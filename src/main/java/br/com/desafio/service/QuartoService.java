@@ -49,6 +49,13 @@ public class QuartoService {
                 .toList();
     }
 
+    public QuartoResponseDTO getQuartoById(Long id) {
+        Quarto quarto = quartoRepository.findById(id)
+                .orElseThrow(() -> new QuartoNotFoundException("Quarto de ID " + id + " não encontrado!"));
+
+        return QuartoMapper.toDTO(quarto);
+    }
+
     public List<QuartoResponseDTO> listarQuartosPorHotel(String nome) {
         return quartoRepository.findByHotel(nome)
                 .stream()

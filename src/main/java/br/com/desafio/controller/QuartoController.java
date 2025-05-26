@@ -30,6 +30,12 @@ public class QuartoController {
                 .body(quartoService.getAllQuarto());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<QuartoResponseDTO> getQuartoById(@PathVariable Long id) {
+        return ResponseEntity.status(200)
+                .body(quartoService.getQuartoById(id));
+    }
+
     @GetMapping("/buscar")
     public ResponseEntity<List<QuartoResponseDTO>> buscarPeloNomeHotel(@RequestParam String nome) {
         return ResponseEntity.status(200)
