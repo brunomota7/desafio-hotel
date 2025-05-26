@@ -13,24 +13,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class QuartoRequestDTO {
 
-    @NotBlank(message = "O número do quarto é obrigatório")
-    @Pattern(regexp = "\\d+", message = "O número do quarto deve conter apenas dígitos")
-    private String numQuarto;
+    @NotNull
+    @Positive
+    private Integer numQuarto;
 
     @NotNull
-    @Positive(message = "O valor da diária tem que ser positivo")
+    @Positive
     private double diaria;
 
     @NotNull
-    @Min(value = 1, message = "A capacidade não pode ser negativa")
-    private int capacidade;
+    @Min(value = 1)
+    private Integer capacidade;
 
     private boolean resevado = false;
     private String imagemUrl;
 
     private Hotel hotel;
-
-    public Integer getNumQuartoAsInteger() {
-        return Integer.parseInt(numQuarto);
-    }
 }
